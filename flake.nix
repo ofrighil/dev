@@ -26,6 +26,7 @@
 	  bashInteractive
 	] ++ [
 	  neovim
+	  helix
 	] ++ [
 	  bat
 	  eza
@@ -33,23 +34,43 @@
 	  git
 	  gnumake
 	  jujutsu
+          protobuf
 	  ripgrep
 	  tmux
-	  # zellij
-	  # starship
-	  # helix
+          tree-sitter
+	  zellij
 	] ++ [
+          (agda.withPackages ( p: [ p.standard-library ] ))
+          cornelis
+
 	  python313
+          ruff
+          ty
 	  uv
+          
+          stack
+          ghc
+
+          lean4
+          
+          lua
+          luarocks
+          stylua
+          lua-language-server
 
 	  nil
 	  nixfmt-rfc-style
 
 	  ocaml
+          ocamlPackages.ocaml-lsp
 	  opam
+          # tree-sitter-grammars.tree-sitter-ocaml
 
 	  rust-bin.stable.latest.default
 	  rust-analyzer
+          
+          # stack
+          # haskell.compiler.ghc9103
 	];
 	shellHook =
 	''
