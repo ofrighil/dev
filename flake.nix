@@ -6,12 +6,17 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cornelis = {
+      url = "github:agda/cornelis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
     nixpkgs,
     flake-utils,
     rust-overlay,
+    cornelis,
   }:
   flake-utils.lib.eachDefaultSystem (
     system:
@@ -30,6 +35,7 @@
 	] ++ [
 	  bat
 	  eza
+          direnv
 	  fd
 	  git
 	  gnumake
@@ -40,8 +46,8 @@
           tree-sitter
 	  zellij
 	] ++ [
-          (agda.withPackages ( p: [ p.standard-library ] ))
-          cornelis
+          cornelis.packages.${system}.cornelis
+          cornelis.packages.${system}
 
 	  python313
           ruff
@@ -59,7 +65,7 @@
           lua-language-server
 
 	  nil
-	  nixfmt-rfc-style
+	  nixfmt
 
 	  ocaml
           ocamlPackages.ocaml-lsp
